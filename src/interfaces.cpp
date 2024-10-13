@@ -233,7 +233,8 @@ void modifyExpenseInterface(pqxx::connection& conn, string& nameExp, string& use
         cout <<"1.Name"<<endl;
         cout <<"2.Cost"<<endl;
         cout <<"3.Date"<<endl;
-        cout<<"4.Exit"<<endl;
+        cout<<"4.Delete expense"<<endl;
+        cout<<"5.Exit"<<endl;
         cin>>ans;
 
         switch(ans){
@@ -274,7 +275,11 @@ void modifyExpenseInterface(pqxx::connection& conn, string& nameExp, string& use
             flag = false;
             break;
 
-            case 4: flag = false; break;
+            case 4: deleteExpense(conn, nameExp, user_id);
+            flag = false;
+            break;
+
+            case 5: flag = false; break;
 
             default: cout<<"Please choose an option"<<endl;
             cin.ignore();
@@ -282,7 +287,7 @@ void modifyExpenseInterface(pqxx::connection& conn, string& nameExp, string& use
         }
     }while(flag);
 
-    return ;
+    return;
 }
 
 

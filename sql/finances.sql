@@ -23,7 +23,3 @@ CREATE TABLE expenses(
     user_id INT NOT NULL,
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
-
-TRUNCATE TABLE users, money, expenses;
-
-SELECT setval('users_user_id_seq', 1, false);

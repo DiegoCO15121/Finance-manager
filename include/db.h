@@ -43,4 +43,7 @@ void updateExpense(pqxx::connection& conn, string& nameExp, string columnName, s
 /* This funcion get the expense amount to be able to update it */
 float getAmount(pqxx::connection& conn, string& user_id, string& nameExp);
 
+/* This functions delete the expense user has selected */
+void deleteExpense(pqxx::connection& conn, string& nameExp, string& userId);
+
 #endif

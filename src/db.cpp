@@ -237,4 +237,25 @@ float getAmount(pqxx::connection& conn, string& user_id, string& nameExp){
     }
 }
 
+void deleteExpense(pqxx::connection& conn, string& nameExp, string& userId){
+    try {
+        pqxx::work w(conn);
+        string query = "DELETE FROM expenses WHERE name = " + w.quote(nameExp) + " AND user_id = " + w.quote(userId);
+
+        w.exec(query);
+        w.commit();
+
+        cout<<"Expense deleted successfully"<<endl;
+        Sleep(400);
+        system("cls");
+    }
+    catch(pqxx::sql_error &e){
+        cerr<<"SQL error: "<<e.what();
+        cerr<<"Query: "<<e.query();
+    }
+    catch(exception const &e){
+        cerr<<"Error: "<<e.what();
+    }
+}
+
 
