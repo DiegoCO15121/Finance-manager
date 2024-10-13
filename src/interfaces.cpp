@@ -275,7 +275,14 @@ void modifyExpenseInterface(pqxx::connection& conn, string& nameExp, string& use
             flag = false;
             break;
 
-            case 4: deleteExpense(conn, nameExp, user_id);
+            case 4: 
+            oldAmount = getAmount(conn,user_id, nameExp); // Getting amount of the expense
+            balance = getMoney(conn, user_id); // Getting user's balance
+
+            newBalance = balance + oldAmount;
+
+            deleteExpense(conn, nameExp, user_id); // Deleting expense
+            updateAmount(conn, user_id, newBalance); // Updating user's balance
             flag = false;
             break;
 
